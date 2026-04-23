@@ -1,0 +1,68 @@
+{
+  "entities": {
+    "Video": {
+      "title": "Video",
+      "description": "Metadata for an uploaded video",
+      "type": "object",
+      "properties": {
+        "video_id": { "type": "string" },
+        "file_url": { "type": "string" },
+        "upload_time": { "type": "number" }
+      },
+      "required": ["video_id", "file_url", "upload_time"]
+    },
+    "Calibration": {
+      "title": "Calibration",
+      "description": "Camera calibration data for a video",
+      "type": "object",
+      "properties": {
+        "video_id": { "type": "string" },
+        "pixel_points": { "type": "array" },
+        "world_points": { "type": "array" },
+        "homography_matrix": { "type": "array" }
+      },
+      "required": ["video_id", "pixel_points", "world_points", "homography_matrix"]
+    },
+    "Result": {
+      "title": "Result",
+      "description": "Analysis result for a video",
+      "type": "object",
+      "properties": {
+        "video_id": { "type": "string" },
+        "total_vehicles": { "type": "number" },
+        "vehicles": { "type": "array" }
+      },
+      "required": ["video_id", "total_vehicles", "vehicles"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile and role information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "created_at": { "type": "object" }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles and roles"
+    },
+    "/videos/{videoId}": {
+      "schema": "Video",
+      "description": "Collection of uploaded videos"
+    },
+    "/calibration/{calibrationId}": {
+      "schema": "Calibration",
+      "description": "Collection of camera calibrations"
+    },
+    "/results/{resultId}": {
+      "schema": "Result",
+      "description": "Collection of analysis results"
+    }
+  }
+}

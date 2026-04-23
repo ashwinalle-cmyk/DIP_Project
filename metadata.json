@@ -1,0 +1,5 @@
+{
+  "name": "RoadGuardian",
+  "description": "Predictive Detection of Underage and Rash Driving through Vehicle Behaviour Intelligence using AI-powered video analysis.",
+  "requestFramePermissions": ["camera"]
+}
